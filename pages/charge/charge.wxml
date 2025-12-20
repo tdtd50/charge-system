@@ -1,0 +1,65 @@
+<view class="charge-container">
+  <view class="header">
+    <text class="welcome">欢迎使用充电服务</text>
+  </view>
+
+  <view class="balance-card">
+    <view class="balance-info">
+      <text class="label">账户余额</text>
+      <text class="amount">¥{{userInfo.remain || 0}}</text>
+    </view>
+  </view>
+
+  <view class="amount-selector">
+    <text class="section-title">选择充电金额</text>
+    <view class="amount-list">
+      <view
+        class="amount-item {{selectedAmount === 1 ? 'active' : ''}}"
+        bindtap="selectAmount"
+        data-amount="1"
+      >
+        <text class="amount">1元</text>
+        <text class="time">1分钟</text>
+      </view>
+      <view
+        class="amount-item {{selectedAmount === 2 ? 'active' : ''}}"
+        bindtap="selectAmount"
+        data-amount="2"
+      >
+        <text class="amount">2元</text>
+        <text class="time">2分钟</text>
+      </view>
+      <view
+        class="amount-item {{selectedAmount === 3 ? 'active' : ''}}"
+        bindtap="selectAmount"
+        data-amount="3"
+      >
+        <text class="amount">3元</text>
+        <text class="time">3分钟</text>
+      </view>
+      <view
+        class="amount-item {{selectedAmount === 4 ? 'active' : ''}}"
+        bindtap="selectAmount"
+        data-amount="4"
+      >
+        <text class="amount">4元</text>
+        <text class="time">4分钟</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="charging-status" wx:if="{{isCharging}}">
+    <view class="status-card">
+      <text class="status-title">充电中...</text>
+      <view class="countdown">
+        <text class="countdown-text">剩余时间</text>
+        <text class="countdown-time">{{remainingTime}}分钟</text>
+      </view>
+      <progress percent="{{progress}}" stroke-width="10" activeColor="#52c41a" />
+    </view>
+  </view>
+
+  <button class="btn btn-primary charge-btn" bindtap="handleCharge" disabled="{{isCharging}}">
+    {{isCharging ? '充电中...' : '立即充电'}}
+  </button>
+</view>

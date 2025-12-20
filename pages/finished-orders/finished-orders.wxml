@@ -1,0 +1,20 @@
+<view class="orders-container">
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-item" wx:for="{{orders}}" wx:key="id">
+      <view class="order-header">
+        <text class="order-id">订单编号：{{item.id}}</text>
+        <text class="order-status status-finished">已完成</text>
+      </view>
+      <view class="order-info">
+        <text class="info-item">创建时间：{{item.date}}</text>
+        <text class="info-item">充电时长：{{item.time}}分钟</text>
+        <text class="info-item">充电金额：¥{{item.cost}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <image src="/images/empty.png" mode="aspectFit"></image>
+    <text>暂无已结束订单</text>
+  </view>
+</view>

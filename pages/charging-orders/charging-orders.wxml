@@ -1,0 +1,20 @@
+<view class="orders-container">
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-item" wx:for="{{orders}}" wx:key="id">
+      <view class="order-header">
+        <text class="order-id">订单编号：{{item.id}}</text>
+        <text class="order-status status-charging">充电中</text>
+      </view>
+      <view class="order-info">
+        <text class="info-item">创建时间：{{item.date}}</text>
+        <text class="info-item highlight">剩余时间：{{item.remaining_time}}分钟</text>
+        <text class="info-item">充电金额：¥{{item.cost}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <image src="/images/empty.png" mode="aspectFit"></image>
+    <text>暂无充电中订单</text>
+  </view>
+</view>

@@ -1,0 +1,53 @@
+<view class="home-container">
+  <view class="user-card">
+    <view class="avatar">
+      <image src="/images/default-avatar.png" mode="aspectFill"></image>
+    </view>
+    <view class="user-info">
+      <text class="name">{{userInfo.name || '用户'}}</text>
+      <text class="number">学号：{{userInfo.number || '--'}}</text>
+      <text class="balance">余额：¥{{userInfo.remain || 0}}</text>
+    </view>
+  </view>
+
+  <view class="action-buttons">
+    <button class="btn btn-primary" bindtap="handleRecharge">充值</button>
+    <button class="btn btn-default" bindtap="handleLogout">退出登录</button>
+  </view>
+
+  <view class="menu-list">
+    <view class="menu-item" bindtap="goToOrders">
+      <text class="menu-icon">📋</text>
+      <text class="menu-text">我的订单</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToChargingOrders">
+      <text class="menu-icon">⚡</text>
+      <text class="menu-text">充电中订单</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToFinishedOrders">
+      <text class="menu-icon">✅</text>
+      <text class="menu-text">已结束订单</text>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+</view>
+
+<!-- 充值弹窗 -->
+<view class="modal" wx:if="{{showRechargeModal}}" bindtap="closeModal">
+  <view class="modal-content" catchtap="preventClose">
+    <view class="modal-title">账户充值</view>
+    <input
+      class="modal-input"
+      type="digit"
+      placeholder="请输入充值金额"
+      value="{{rechargeAmount}}"
+      bindinput="onRechargeInput"
+    />
+    <view class="modal-buttons">
+      <button class="modal-btn cancel" bindtap="closeModal">取消</button>
+      <button class="modal-btn confirm" bindtap="confirmRecharge">确定</button>
+    </view>
+  </view>
+</view>

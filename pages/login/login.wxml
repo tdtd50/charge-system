@@ -1,0 +1,21 @@
+<view class="login-container">
+  <view class="logo">
+    <image src="/images/logo.png" mode="aspectFit"></image>
+    <text class="title">充电桩管理系统</text>
+  </view>
+
+  <view class="form">
+    <view class="form-item">
+      <input type="text" placeholder="请输入学号" value="{{number}}" bindinput="onNumberInput" />
+    </view>
+    <view class="form-item">
+      <input type="password" placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+    </view>
+
+    <button class="btn btn-primary" bindtap="handleLogin">登录</button>
+    <view class="register-link">
+      <text>还没有账号？</text>
+      <text class="link" bindtap="handleRegister">立即注册</text>
+    </view>
+  </view>
+</view>
