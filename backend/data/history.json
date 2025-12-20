@@ -1,0 +1,200 @@
+{
+  "records": [
+    {
+      "timestamp": "2025-12-15T07:17:39.937Z",
+      "voltage": 50.93,
+      "current": 4.28,
+      "power": 217.98,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:41.950Z",
+      "voltage": 53.81,
+      "current": 2.91,
+      "power": 156.59,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:43.958Z",
+      "voltage": 51.84,
+      "current": 4.02,
+      "power": 208.4,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:45.962Z",
+      "voltage": 55.23,
+      "current": 3.37,
+      "power": 186.13,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:47.966Z",
+      "voltage": 56.21,
+      "current": 3.94,
+      "power": 221.47,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:49.979Z",
+      "voltage": 55.55,
+      "current": 3.31,
+      "power": 183.87,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:51.986Z",
+      "voltage": 51.44,
+      "current": 3.55,
+      "power": 182.61,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:54.002Z",
+      "voltage": 48.64,
+      "current": 3.53,
+      "power": 171.7,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:56.004Z",
+      "voltage": 53.32,
+      "current": 3.07,
+      "power": 163.69,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:17:58.006Z",
+      "voltage": 51.3,
+      "current": 2.29,
+      "power": 117.48,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:00.010Z",
+      "voltage": 48.65,
+      "current": 2.5,
+      "power": 121.63,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:02.018Z",
+      "voltage": 51.45,
+      "current": 2.23,
+      "power": 114.73,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:04.023Z",
+      "voltage": 50.43,
+      "current": 4.56,
+      "power": 229.96,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:06.037Z",
+      "voltage": 54.55,
+      "current": 4.58,
+      "power": 249.84,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:08.049Z",
+      "voltage": 54.91,
+      "current": 2.86,
+      "power": 157.04,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:10.063Z",
+      "voltage": 51.21,
+      "current": 3.23,
+      "power": 165.41,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:12.073Z",
+      "voltage": 48.1,
+      "current": 3.48,
+      "power": 167.39,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:14.086Z",
+      "voltage": 51.97,
+      "current": 2.45,
+      "power": 127.33,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:16.094Z",
+      "voltage": 51.42,
+      "current": 4.35,
+      "power": 223.68,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:18.099Z",
+      "voltage": 57.94,
+      "current": 4.61,
+      "power": 267.1,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:20.106Z",
+      "voltage": 48.69,
+      "current": 2.54,
+      "power": 123.67,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:22.107Z",
+      "voltage": 54.75,
+      "current": 4.58,
+      "power": 250.75,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:24.111Z",
+      "voltage": 49.66,
+      "current": 4.06,
+      "power": 201.62,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:26.117Z",
+      "voltage": 52.58,
+      "current": 2.35,
+      "power": 123.56,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:28.126Z",
+      "voltage": 51.9,
+      "current": 3.96,
+      "power": 205.52,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:30.137Z",
+      "voltage": 48.25,
+      "current": 3.4,
+      "power": 164.05,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:32.137Z",
+      "voltage": 49.16,
+      "current": 4.52,
+      "power": 222.2,
+      "status": "charging"
+    },
+    {
+      "timestamp": "2025-12-15T07:18:34.140Z",
+      "voltage": 50.16,
+      "current": 3.84,
+      "power": 192.61,
+      "status": "charging"
+    }
+  ]
+}
