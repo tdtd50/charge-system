@@ -3,7 +3,8 @@ from flask_cors import CORS
 from models import db, User, Order, Administer, Risk
 from config import Config
 from datetime import datetime, timedelta
-from sqlalchemy import func
+from sqlalchemy import func, create_engine
+from urllib.parse import urlparse
 import threading
 import time
 
@@ -11,8 +12,58 @@ app = Flask(__name__)
 app.config.from_object(Config)
 CORS(app)
 
+# 如果使用 MySQL 且数据库不存在，则尝试在启动时创建该数据库（便于本地开发）
+try:
+    uri = app.config.get('SQLALCHEMY_DATABASE_URI', '')
+    if uri and uri.startswith('mysql'):
+        # 将形如 mysql+pymysql://user:pass@host:port/dbname 分解
+        parts = uri.split('/')
+        if len(parts) >= 4 and parts[3]:
+            db_name = parts[3]
+            engine_base = '/'.join(parts[:3]) + '/'
+            try:
+                eng = create_engine(engine_base)
+                with eng.connect() as conn:
+                    conn.execute(
+                        f"CREATE DATABASE IF NOT EXISTS `{db_name}` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+                    )
+                eng.dispose()
+            except Exception:
+                # 忽略创建数据库时的错误，后续 db.init_app 会报告连接问题
+                pass
+except Exception:
+    pass
+
 # 初始化数据库
 db.init_app(app)
+
+# 在启动时为本地开发（SQLite）确保表存在并创建默认数据
+try:
+    with app.app_context():
+        db.create_all()
+        # 创建默认管理员（如果不存在）
+        if 'Administer' in globals():
+            if not Administer.query.filter_by(name='admin').first():
+                admin = Administer(name='admin', password='admin123')
+                db.session.add(admin)
+
+        # 创建测试用户（如果不存在）
+        if 'User' in globals():
+            if not User.query.filter_by(number='2021001').first():
+                test_user = User(
+                    name='张三',
+                    number='2021001',
+                    password='123456',
+                    remain=100.0
+                )
+                db.session.add(test_user)
+
+        try:
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+except Exception as e:
+    print('数据库初始化自动执行时发生：', e)
 
 # 当前充电状态（用于硬件读取）
 current_charging = {
@@ -334,4 +385,6 @@ def init_database():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # 禁用自动重载以避免由于系统/第三方包文件变动导致的反复重启
+    # 开发时若需要调试器，请保留 debug=True，但将 use_reloader=False
+    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
