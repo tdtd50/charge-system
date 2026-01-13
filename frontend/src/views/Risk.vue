@@ -19,15 +19,14 @@
         <el-table-column prop="date" label="日期时间" width="180" />
         <el-table-column prop="reason" label="报警原因" width="150">
           <template #default="{ row }">
-            <el-tag :type="row.reason === '火灾' ? 'danger' : 'warning'">
-              {{ row.reason }}
+            <el-tag :type="getReasonType(row.reason)">
+              {{ getReasonText(row.reason) }}
             </el-tag>
           </template>
         </el-table-column>
         <el-table-column label="备注" min-width="200">
           <template #default="{ row }">
-            <span v-if="row.reason === '火灾'">检测到烟雾或火焰，已自动断电</span>
-            <span v-else>检测到电流过大，已自动断电保护</span>
+            <span>{{ getReasonDescription(row.reason) }}</span>
           </template>
         </el-table-column>
       </el-table>
@@ -45,6 +44,33 @@ const chartRef = ref(null)
 const riskList = ref([])
 const statistics = ref([])
 let chartInstance = null
+
+// 报警原因映射函数
+const getReasonText = (reason) => {
+  const reasonMap = {
+    '火灾': '火灾',
+    'Fire': '火灾',  // 英文映射为中文
+    '电流过大': '电流过大',
+    'Overcurrent': '电流过大'
+  }
+  return reasonMap[reason] || reason
+}
+
+const getReasonType = (reason) => {
+  // 火灾用红色(danger)，其他用黄色(warning)
+  const fireReasons = ['火灾', 'Fire']
+  return fireReasons.includes(reason) ? 'danger' : 'warning'
+}
+
+const getReasonDescription = (reason) => {
+  const descriptionMap = {
+    '火灾': '检测到烟雾或火焰，已自动断电',
+    'Fire': '检测到烟雾或火焰，已自动断电',
+    '电流过大': '检测到电流过大，已自动断电保护',
+    'Overcurrent': '检测到电流过大，已自动断电保护'
+  }
+  return descriptionMap[reason] || '检测到异常，已自动断电保护'
+}
 
 const loadData = async () => {
   try {
