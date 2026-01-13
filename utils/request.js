@@ -1,24 +1,66 @@
 // 后端API地址（需要修改为实际服务器地址）
-const BASE_URL = 'http://localhost:5000/api'
+const BASE_URL = 'http://192.168.26.7:5000/api'
 
 // 封装请求
 function request(options) {
   return new Promise((resolve, reject) => {
+    // 获取token（安全检查）
+    let token = null
+    try {
+      const app = getApp()
+      if (app && app.globalData) {
+        token = app.globalData.token
+      }
+    } catch (e) {
+      console.warn('getApp 调用失败，尝试从缓存获取 token')
+    }
+
+    // 如果 app 中没有，尝试从缓存获取
+    if (!token) {
+      token = wx.getStorageSync('token')
+    }
+
+    // 构建请求头
+    const header = {
+      'Content-Type': 'application/json'
+    }
+
+    // 如果存在token，添加到请求头
+    if (token) {
+      header['Authorization'] = `Bearer ${token}`
+    }
+
     wx.request({
       url: BASE_URL + options.url,
       method: options.method || 'GET',
       data: options.data || {},
-      header: {
-        'Content-Type': 'application/json'
-      },
+      header: header,
       success: (res) => {
         if (res.statusCode === 200) {
           resolve(res.data)
+        } else if (res.statusCode === 401) {
+          // token过期或无效，跳转到登录页
+          wx.showToast({
+            title: '请重新登录',
+            icon: 'none'
+          })
+          setTimeout(() => {
+            wx.reLaunch({ url: '/pages/login/login' })
+          }, 1500)
+          reject(res)
         } else {
+          wx.showToast({
+            title: res.data?.message || '请求失败',
+            icon: 'none'
+          })
           reject(res)
         }
       },
       fail: (err) => {
+        wx.showToast({
+          title: '网络连接失败',
+          icon: 'none'
+        })
         reject(err)
       }
     })

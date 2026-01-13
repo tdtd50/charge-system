@@ -32,8 +32,12 @@ Page({
       const res = await api.userLogin({ number, password })
 
       if (res.code === 200) {
-        // 保存用户信息
+        // 保存用户信息和token
         wx.setStorageSync('userInfo', res.data)
+        if (res.token) {
+          wx.setStorageSync('token', res.token)
+          app.globalData.token = res.token
+        }
         app.globalData.userInfo = res.data
         app.globalData.userId = res.data.id
 
@@ -63,10 +67,6 @@ Page({
   },
 
   handleRegister() {
-    wx.showModal({
-      title: '注册提示',
-      content: '请联系管理员注册账号',
-      showCancel: false
-    })
+    wx.navigateTo({ url: '/pages/register/register' })
   }
 })

@@ -15,7 +15,7 @@ Page({
   async loadUserInfo() {
     const userId = app.globalData.userId
     if (!userId) {
-      wx.redirectTo({ url: '/pages/login/login' })
+      wx.reLaunch({ url: '/pages/login/login' })
       return
     }
 

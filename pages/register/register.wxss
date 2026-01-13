@@ -1,4 +1,4 @@
-.login-container {
+.register-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
@@ -58,7 +58,7 @@
   padding: 0;
 }
 
-.register-link {
+.login-link {
   text-align: center;
   margin-top: 30rpx;
   font-size: 28rpx;
